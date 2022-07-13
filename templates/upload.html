@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2> Upload Three SS Files Here..</h2>
+    <br/>
+    <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+   <div class="input-group mb-3">
+  <input type="file" class="form-control" id="inputGroupFile01" name="file1">
+  <label class="input-group-text" for="inputGroupFile02">Upload</label>
+   </div>
+        <br/>
+    <div class="input-group mb-3">
+  <input type="file" class="form-control" id="inputGroupFile03" name="file2">
+  <label class="input-group-text" for="inputGroupFile02">Upload</label>
+        </div>
+        <br/>
+        <div class="input-group mb-3">
+  <input type="file" class="form-control" id="inputGroupFile02" name="file3">
+  <label class="input-group-text" for="inputGroupFile02">Upload</label>
+        </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+</div>
+    </form>
+        <h5> Hit Merge to merge all three files</h5>
+
+
+{% endblock %}
