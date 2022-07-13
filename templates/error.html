@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+    <br/>
+    <h3> Error.</h3>
+    <br/>
+
+    <br/>
+    <h5> Error Merging Your Tables. Following Could be the possible causes..</h5>
+    <ol class="list-group list-group-numbered">
+  <li class="list-group-item"> Provided files are other than docx</li>
+  <li class="list-group-item"> Ensure that they are in desired Table format of SS table</li>
+  <li class="list-group-item"> Could not Find the File in given directory</li>
+      <li class="list-group-item"> Corrupted Files</li>
+
+</ol>
+        <br/>
+    <br/>
+    <br/><br/>
+
+
+    <a href="{% url 'home' %}" class = "btn btn-primary btn-sm" > Go Back</a>
+    <br/>
+
+{% endblock %}

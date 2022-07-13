@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+    <br/>
+    <h5> It's just three steps process.Then, your file is ready.</h5>
+    <br/>
+
+    <br/>
+    <ol class="list-group list-group-numbered">
+  <li class="list-group-item"> Browse three SS tables containing files in docx formats</li>
+  <li class="list-group-item"> Hit Submit the wait for the Merge to happen.</li>
+  <li class="list-group-item">Now, just Click Download and your got your file</li>
+</ol>
+        <br/>
+    <br/>
+
+    <h5> Note: that you can't have files other than in docx format.And it should always contain SS tables in default format.</h5>
+    <br/>
+    <br/>
+
+    <a href="{% url 'home' %}" class = "btn btn-primary btn-sm" > Go Back</a>
+    <br/>
+
+
+
+</div>
+    </form>
+
+{% endblock %}

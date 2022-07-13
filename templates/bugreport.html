@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2> Report Bugs If you find Any...</h2>
+    <br/>
+    <table>
+      <div class="form-group">
+
+    <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+        {{ form.as_table }}
+    </div>
+                </table>
+
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+
+{% endblock %}

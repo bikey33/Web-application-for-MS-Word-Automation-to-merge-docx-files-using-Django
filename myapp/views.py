@@ -1,8 +1,8 @@
 from typing import BinaryIO
-
+from django.views.generic import CreateView
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .forms import DocumentForm
+from .forms import DocumentForm,Bugreports
 from .models import Mydocument
 import docx as dc
 from django.core.files import File
@@ -140,17 +140,29 @@ def home(response):
             print(number)
             print("url",file2_name)
             print("url",file1_name)
-            SS_Merge(response,number,file1_name,file2_name,file3_name,merged_url)
-            #return redirect('download')
-            #print("Sucessful File Merged To",merged_url)
+            try:
+                SS_Merge(response,number,file1_name,file2_name,file3_name,merged_url)
+                #return redirect('download')
+                #print("Sucessful File Merged To",merged_url)
 
-            doc1 = Mydocument.objects.get(id = number)
-            con['url'] = doc1.file_processed.url
-            print("File merged url is :",doc1.file_processed.url)
-            return render(response,'download.html', con)
+                doc1 = Mydocument.objects.get(id = number)
+                con['url'] = doc1.file_processed.url
+                print("File merged url is :",doc1.file_processed.url)
+                return render(response,'download.html', con)
+            except:
+                return render(response,'error.html',{})
 
     else:
         form = DocumentForm()
-        return render(response,'upload.html',{'form':form})
+        return render(response,'upload.html',{})
 def download( response):
     pass
+def help(response):
+    return render(response, 'help.html',{})
+def about(response):
+    return render(response, 'about.html',{})
+class ReportView(CreateView):
+        model = Bugreports
+        # Only required when using our custom form
+        template_name = 'bugreport.html'
+        fields = ('name', 'email', 'report')

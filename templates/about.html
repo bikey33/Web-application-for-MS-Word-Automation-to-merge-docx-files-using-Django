@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+    <style>
+    .social-media{
+        transition: color 0.2s;
+        text-decoration:none;
+        margin: 0 40px
+
+    }
+    .social-media:hover{
+        color:#3903fc
+    }
+    h2{text-align: center;}
+    h3{text-align: center;}
+    .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;
+}
+    </style>
+    <h1>About This app.. </h1>
+    <br/>
+
+        <br/>
+        <br/>
+        <p>
+            This app was developed while working as the Engineering Researcher at the Entegra-sources Pvt. Ltd.
+            I developed this app to automate the boring and repetiive task of merging special type of docx tables called SS tables. It was used in real life and saved my lots of time and energy. You can click help to know about the process.
+        </p>
+        <br/><br/>
+        <div class="text-center">
+        <a class = "social-media" href="{{ item.twitter }}" target="_blank">
+        <ion-icon name="logo-twitter" size="large"></ion-icon>
+        </a>
+        <a class = "social-media" href="{{ item.facebook }}" target="_blank">
+        <ion-icon name="logo-facebook" size="large"></ion-icon>
+        </a>
+        <a class = "social-media" href="{{ item.linkdin }}" target="_blank">
+        <ion-icon name="logo-linkedin" size="large"></ion-icon>
+        </a>
+        <a class = "social-media" href="{{ item.github }}" target="_blank">
+        <ion-icon name="logo-github" size="large"></ion-icon>
+        </a>
+        </div>
+{% endblock %}
