@@ -7,7 +7,7 @@ from .models import Mydocument
 import docx as dc
 from django.core.files import File
 from pathlib import Path
-from django.core.files import File as DjangoFile
+from django.core.files.storage import FileSystemStorage
 # Create your views here.
 def SS_Merge(response, n, f1,f2,f3,m):
     import os
@@ -106,15 +106,18 @@ def SS_Merge(response, n, f1,f2,f3,m):
             column = table.rows[36 + i * 3].cells
             column[1].text = List_ss3_col1[i + 12]
             column[2].text = List_ss3_col2[i + 12]
-    file_name = r'C:\Users\Dell\PycharmProjects\WordProcessor_web\media\documents\word\ssmerged.docx'
+    file_name = r'C:\Users\Dell\PycharmProjects\WordProcessor_web\media\ssmerged.docx'
     doc.save(file_name)
     print(loc)
     file = Mydocument.objects.get(id=n)
-    f_name = r'C:/Users/Dell/PycharmProjects/WordProcessor_web/media/documents/word/ssmerged.docx'
+    f_name = r'C:/Users/Dell/PycharmProjects/WordProcessor_web/media/ssmerged.docx'
     path = Path(f_name)
     with path.open(mode = 'rb') as f:
-        file.file_processed.specs = File(f, name = path.name)
+        file_opened= File(f, name = path.name)
+        file.file_processed.specs = file_opened
         file.save()
+        Mydocument.objects.filter(id =n).update(file_processed=file_opened)
+
         print("This file is ssmerged file:",file.file_processed.url)
 
 
@@ -139,10 +142,11 @@ def home(response):
             print("url",file1_name)
             SS_Merge(response,number,file1_name,file2_name,file3_name,merged_url)
             #return redirect('download')
-            print("Sucessful File Merged To",merged_url)
+            #print("Sucessful File Merged To",merged_url)
 
             doc1 = Mydocument.objects.get(id = number)
             con['url'] = doc1.file_processed.url
+            print("File merged url is :",doc1.file_processed.url)
             return render(response,'download.html', con)
 
     else:
